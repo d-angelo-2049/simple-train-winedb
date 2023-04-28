@@ -16,10 +16,10 @@ RUN apt-get update && \
 RUN /opt/conda/bin/conda init bash
 
 # create a new conda environment and activate it
-COPY ./windb_env.yaml /tmp/windb_env.yaml
-RUN /opt/conda/bin/conda env create -f /tmp/windb_env.yaml
-ENV PATH /opt/conda/envs/windb_env.yaml/bin:$PATH
-RUN echo "conda activate windb_env" >> ~/.bashrc
+COPY ./winedb_env.yaml /tmp/winedb_env.yaml
+RUN /opt/conda/bin/conda env create -f /tmp/winedb_env.yaml
+ENV PATH /opt/conda/envs/winedb_env.yaml/bin:$PATH
+RUN echo "conda activate winedb_env" >> ~/.bashrc
 
 # clean packages
 RUN /opt/conda/bin/conda clean --all --yes
@@ -39,5 +39,5 @@ WORKDIR /simple-train-winedb
 
 # mount the current directory on the host to /src in the container
 COPY . /simple-train-winedb
-SHELL ["/bin/bash", "-c", "source ~/.bashrc && conda activate windb_env.yaml"]
+SHELL ["/bin/bash", "-c", "source ~/.bashrc && conda activate winedb_env.yaml"]
 #CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
